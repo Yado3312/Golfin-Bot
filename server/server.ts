@@ -18,7 +18,7 @@ app.use(express.json());
 const conectarDB = async () => {
   try {
     await mongoose.connect(MONGO_URI);
-    console.log("✅ MongoDB conectado");
+    console.log("MongoDB conectado");
   } catch (error) {
     console.error("Error al conectar a MongoDB:", error);
     process.exit(1);
@@ -59,6 +59,6 @@ app.get("/howplay/search", async(req: any, res: any) => {
 
 // Levantar servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor escuchando en puerto ${PORT}`);
+  console.log(`Servidor escuchando en puerto ${PORT}`);
 });
 
