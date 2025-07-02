@@ -9,7 +9,9 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  ActivityIndicator
+  ActivityIndicator,
+  SafeAreaView,
+  Keyboard
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,47 +29,58 @@ type Message = {
   timestamp?: Date;
 };
 
-
-
 const ip : String= "192.168.0.15";
 
-const saludos = ['hola', 'hi', 'hello', 'buenos dias', 'buenas tardes', 'buenas noches', 'que tal', 'como estas', 'saludos', 'hey', 'que hubo', 'habla'];
-const adios = ['adios', 'bye', 'hasta luego', 'nos vemos', 'chao', 'hasta pronto', 'hasta la proxima', 'cuidate', 'feliz dia', 'buen dia','nos vemos' ];
-const startLobby = ['iniciar una lobby', 'crear lobby', 'crear lobby', 'invitar party', 'crear party', 'lobby', 'party'];
-const startSession = ['inicio sesion', 'inicio de sesion', 'log in','registrarse', 'me registro', 'registrarme','iniciar sesion','logueo', 'login', 'inicio una sesion'];
-const outSession = ['cerrar sesion','cerrar la sesion', 'log out', 'salir de la sesion', 'finalizar sesion', 'cierro mi sesion', 'cerrar mi sesion'];
-const iot = ['golfito', 'hoyo', 'mapa', 'como usar el tablero', 'como conectarme', 'conectarse al tablero', 'como me conecto'];
-const howUseTraps = ['como usar las trampas', 'donde usar las trampas', 'usar trampas'];
-const typeTraps = ['tipos de trampas', 'remolino', 'pistola de aire', 'terremoto', 'cachetadon', 'cuantas trampas hay','cuantas tramas existen', 'trampas existentes'];
-const trubbleIot = ['no se conecta', 'no conecta', 'falla conexion', 'fallo conexion', 'problema con conexion', 'problema de conexion'];
-const invite = ['invitar a mis amigos', 'solicitud amistad', 'jugar con amigos', 'jugar amigos', 'invitar', 'solicitud', 'invito a amigos'];
-const news = ['noticias', 'informacion reciente', 'actualizaciones', 'noticias recientes', 'noticias actuales', 'lo mas nuevo','informacion nueva','informacion mas nueva','que hay de nuevo', 'novedades'];
-const pointsSystem = ['sistema de puntos', 'como gano puntos', 'puntajes', 'como es el puntaje', 'como se ganan puntos', 'ganar puntos'];
-const barNav = ['barra de navegacion', 'barra lateral', 'barra de navegacion lateral','menu'];
-const barSections = ['secciones de la barra', 'barra secciones', 'secciones barra', 'barra con sus secciones','que secciones tiene'];
-const karma = ['karma'];
-const puntos = ['puntos',' como funciona el puntaje puntaje', 'punto'];
-const turnos = ['turnos', 'como funcionan los turnos', 'cuantos turnos', 'como son los turnos', 'turnos'];
-const spiral = ['torbellino', 'cosa que gira', 'giratorio', 'giratoria'];
-const cachet = ['mano que golpea', 'cachetada', 'cacheteador', 'cachetea','golpea'];
-const airGun = ['pistola de aire','dispara aire', 'aire', 'disparar'];
-const eathQuater = ['terremoto', 'vibracion', 'vibratorio', 'vibraciones', 'rebota', 'hace rebotar'];
-const faildConection = ['no aparece el dispositivo', 'falla la conexion'];
-const thanks  = ['gracias', 'eres genial','te amo'];
-const howAppWorks = ['como funciona la app', 'como funciona la aplicacion', 'como usar la aplicacion', 'como usar la app', 'usar la app', 'uso de la aplicacion', 'usar la aplicacion', 'uso de la app', 'funcionala app', 'funciona la aplicacion', 'como es que funciona la app', 'como es que funciona la aplicacion'];
-const whatIsGolf = ['que es el golf', 'que es golf'];
-const howPlayGolf =['como jugar golf', 'como se juega el golf'];
-const rules = ['cuales son las reglas', 'reglas del juego'];
-const mostHighestScore = ['conseguir puntaje mas alto', 'conseguir el puntaje mas alto', 'conseguir el mejor puntaje','puntaje mas alto'];
-const whatIsGolfin = ['que es golfin', 'golfin que es', 'golfin'];
-const betterGolfPlayers = ['quienes son los mejores jugadores', 'mejores jugadores', 'pro players']; 
-const whatsDifferent = ['que tienen de diferente', 'que los diferencia', 'que lo  diferencia', 'que diferencia hay', 'golfin y golfito', 'minigolf y golf', 'que los hace diferentes'];
-const wifiConection = ['misma conexion a internet', 'conexion a internet ', 'conexion a wifi', 'misma conexion a wifi', 'misma conexion de wifi'];
-const theresNotWifi = ['no hay wifi', 'no tienen wifi', 'no tiene wifi', 'no hay internet', 'no hay conexion a internet'];
-const soloOrFriends = ['puedo jugar solo', 'jugar solo','jugar solito','jugar en solitario', 'juego solitario']; 
-const compatibility = ['es compatible con ios', 'es compatible con android','multiplataforma','varias plataformas', 'multiples plataformas']; 
-const whoAreYou = ['quien eres', 'que haces', 'que eres'];
-const exercise = ['ejercicio', 'que partes del cuerpo ejercia', 'ejercita'];
+const dictionaryWord = {
+  saludos: ['hola', 'hi', 'hello', 'buenos días', 'buenas tardes', 'buenas noches', 'qué tal', 'cómo estás', 'saludos', 'hey', 'qué hubo', 'habla'],
+  startLobby: ['iniciar una lobby', 'crear lobby', 'invitar party', 'crear party', 'lobby', 'party', 'inicio a jugar', 'comenzar juego', 'iniciar juego', 'crear sala', 'crear sala de juego', 'crear sala de lobby', 'crear sala de party'],
+  startSession: ['inicio sesión', 'inicio de sesión', 'log in', 'registrarse', 'me registro', 'registrarme', 'iniciar sesión', 'logueo', 'login', 'inicio una sesión', 'loguear'],
+  outSession: ['cerrar sesión', 'cerrar la sesión', 'cierro sesión', 'log out', 'salir de la sesión', 'finalizar sesión', 'cierro mi sesión', 'cerrar mi sesión'],
+  iot: ['golfito', 'hoyo', 'mapa', 'cómo usar el tablero', 'cómo conectarme', 'conectarse al tablero', 'cómo me conecto','cómo uso el juego','cómo usar el juego','como uso el juego','como usar el juego'],
+  howUseTraps: ['cómo usar las trampas', 'dónde usar las trampas', 'usar trampas', 'cómo uso las trampas','como uso las trampas'], 
+  typeTraps: ['tipos de trampas', 'remolino', 'pistola de aire', 'terremoto', 'cachetadón', 'cuántas trampas hay', 'cuántas trampas existen', 'trampas existentes'],
+  trubbleIot: ['no se conecta', 'no conecta', 'falla conexión', 'falló conexión', 'problema con conexión', 'problema de conexión'],
+  invite: ['invitar a mis amigos', 'solicitud amistad', 'jugar con amigos', 'jugar amigos', 'invitar', 'solicitud', 'invito a amigos'],
+  news: ['noticias', 'información reciente', 'actualizaciones', 'noticias recientes', 'noticias actuales', 'lo más nuevo', 'información nueva', 'información más nueva', 'qué hay de nuevo', 'novedades'],
+  pointsSystem: ['sistema de puntos', 'cómo gano puntos', 'puntajes', 'cómo es el puntaje', 'cómo se ganan puntos', 'ganar puntos'],
+  barNav: ['barra de navegación', 'barra lateral', 'barra de navegación lateral', 'menú'],
+  barSections: ['secciones de la barra', 'barra secciones', 'secciones barra', 'barra con sus secciones', 'qué secciones tiene'],
+  karma: ['karma'],
+  puntos: ['puntos', 'cómo funciona el puntaje', 'puntaje', 'punto'],
+  turnos: ['turnos', 'cómo funcionan los turnos', 'cuántos turnos', 'cómo son los turnos'],
+  spiral: ['torbellino', 'cosa que gira', 'giratorio', 'giratoria'],
+  cachet: ['mano que golpea', 'cachetada', 'cacheteador', 'cachetea', 'golpea'],
+  airGun: ['pistola de aire', 'dispara aire', 'aire', 'disparar'],
+  eathQuater: ['terremoto', 'vibración', 'vibratorio', 'vibraciones', 'rebota', 'hace rebotar'],
+  faildConection: ['no aparece el dispositivo', 'falla la conexión'],
+  thanks: ['gracias', 'eres genial', 'te amo'],
+  howAppWorks: ['cómo funciona la app', 'cómo funciona la aplicación', 'cómo usar la aplicación', 'cómo usar la app', 'usar la app', 'uso de la aplicación', 'usar la aplicación', 'uso de la app', 'funciona la app', 'funciona la aplicación', 'cómo es que funciona la app', 'cómo es que funciona la aplicación'],
+  whatIsGolf: ['qué es el golf', 'qué es golf'],
+  howPlayGolf: ['cómo jugar golf', 'cómo se juega el golf','como se juega', 'como se juega el golf','como jugar golf','como jugar', 'cómo jugar'],
+  rules: ['cuáles son las reglas', 'reglas del juego','cuales son las reglas', 'reglas de golfin', 'reglas del tablero'],
+  mostHighestScore: ['conseguir puntaje más alto', 'conseguir el puntaje más alto', 'conseguir el mejor puntaje', 'puntaje más alto'],
+  whatIsGolfin: ['qué es golfin', 'golfin qué es', 'golfin'],
+  betterGolfPlayers: ['quiénes son los mejores jugadores', 'mejores jugadores', 'pro players'],
+  whatsDifferent: ['qué tienen de diferente', 'qué los diferencia', 'qué lo diferencia', 'qué diferencia hay', 'golfin y golfito', 'minigolf y golf', 'qué los hace diferentes'],
+  wifiConection: ['misma conexión a internet', 'conexión a internet', 'conexión a wifi', 'misma conexión a wifi', 'misma conexión de wifi'],
+  theresNotWifi: ['no hay wifi', 'no tienen wifi', 'no tiene wifi', 'no hay internet', 'no hay conexión a internet'],
+  soloOrFriends: ['puedo jugar solo', 'jugar solo', 'jugar solito', 'jugar en solitario', 'juego solitario'],
+  compatibility: ['es compatible con ios', 'es compatible con android', 'multiplataforma', 'varias plataformas', 'múltiples plataformas'],
+  whoAreYou: ['quién eres', 'qué haces', 'qué eres', 'hola quién eres'],
+  exercise: ['ejercicio', 'qué partes del cuerpo ejercita', 'ejercita'],
+  adios: ['adiós', 'hasta luego', 'hasta pronto', 'hasta luego amigo', 'bye', 'nos vemos', 'chao', 'hasta la próxima', 'cuídate', 'feliz día', 'buen día', 'bai', 'aios'],
+  
+  howWin: ['cómo ganar', 'cómo se gana', 'cómo se gana el juego', 'cómo se gana la partida', 'cómo ganar la partida', 'cómo ganar el juego', 'ganar el juego', 'ganar la partida', 'como ganar','como se gana'],
+  howManyPoints : ['cuántos hoyos', 'cuántos hoyos hay', 'cuántos hoyos se necesitan', 'cuántos hoyos hay que tener', 'cuántos hoyos hay que conseguir','cantidad de puntos', 'cuántos puntos', 'cuántos puntos necesito', 'cuántos puntos hay que hacer', 'cuántos puntos se necesitan', 'cuántos puntos se requieren', 'cuántos puntos hay que conseguir'],
+  howManyRounds: ['cuántas rondas', 'cuántas rondas hay', 'cuántas rondas se juegan', 'cuántas rondas se necesitan', 'cuántas rondas hay que jugar', 'cuántas rondas hay que completar', 'cuantos rounds hay que hacer', 'cuántos rounds hay que jugar','cuántos rounds hay que completar', 'cuántos rounds hay que conseguir'],
+  howManyPlayers: ['cuántos jugadores', 'cuántos jugadores hay', 'cuántos jugadores se necesitan', 'cuántos jugadores hay que tener', 'cuántos jugadores hay que conseguir','cuantos jugadores pueden jugar', 'cuántos jugadores pueden participar', 'cuántos jugadores se pueden unir', 'cuántos jugadores se pueden agregar', 'cuántos jugadores se pueden incluir'],
+  dude: ['puedo jugar online', 'jugar online', 'jugar en línea', 'jugar en internet', 'jugar en la web', 'jugar en la red', 'jugar en la nube', 'jugar en el servidor', 'jugar en el cloud'],
+  duration: ['duración', 'cuánto dura', 'cuánto tiempo dura', 'cuánto tiempo se necesita', 'cuánto tiempo hay que dedicar', 'cuánto tiempo hay que invertir', 'cuánto tiempo hay que jugar', 'cuánto tiempo hay que completar', 'cuánto tiempo hay que conseguir'],
+  queganas: ['que ganas si juegas con alguien mas', ' que ganas si juegas con amigos', 'que ganas si juegas con alguien', 'que ganas si juegas con otra persona', 'que ganas si juegas con otra persona mas', 'que ganas si juegas con otra persona mas'],
+  replay: ['y como hago eso', 'y como se hace', 'y como se hace eso', 'y como se hace eso','y como hago eso','y como se hace','y como se hace', 'como lo hago', 'como se hace'],
+
+};
+
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([
@@ -126,22 +139,24 @@ export default function App() {
   const generateResponse = async (userInput: string): Promise<string> => {
     const input = userInput.toLowerCase();
     
+
+
     // DETECCION SALUDOS
-    const hello = saludos.some(greeting => input.includes(greeting));
-    if (hello) {
-      const greetingResponses = [ ` Hola! Listo para mejorar y ganarle a Liam?`, ` Buen dia Que tal guap@? `, ` Saludos golfista! ¿En que puedo ayudarte?`, ` Hola tilin! Como va tu juego?`, ` Buenas! Preparado para unos hoyos?` ];
+
+    if (dictionaryWord.saludos.some(greeting => input.includes(greeting))) {
+      const greetingResponses = [ ` Hola, soy golfot tu asistente personal! Listo para mejorar y ganarle a Liam?`, ` Buen dia, soy golfot tu asistente personal, Que tal guap@? `, ` Saludos golfista!, soy golfot tu asistente personal ¿En que puedo ayudarte?`, ` Hola tilin!,soy golfot tu asistente persona,  Como va tu juego?`, ` Buenas!, soy golfot tu asistente personal Preparado para unos hoyos?` ];
       return Promise.resolve( greetingResponses[Math.floor(Math.random() * greetingResponses.length)] );
     }
     
     // DETECCION DESPEDIDAS
-    const bye = adios.some(goodbye => input.includes(goodbye));
-    if (bye) {
+
+    if (dictionaryWord.adios.some(goodbye => input.includes(goodbye))) {
       const goodbyeResponses = [`TE CUIDAS!!!! vete por la sombrita`, `Nos vemos! Practica tu putting.`, `Adios amor... me voy de ti...`, `¡Chao! Recuerda mantener la cabeza quieta en el swing.`, `Hasta la próxima! CUIDATE!`];
       return Promise.resolve (goodbyeResponses[Math.floor(Math.random() * goodbyeResponses.length)]);
     }
 
     // DETECCION LOBBY
-    if (startLobby.some(tutorial => input.includes(tutorial))) {
+    if (dictionaryWord.startLobby.some(tutorial => input.includes(tutorial))) {
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20inicio%20una%20lobby%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
@@ -149,7 +164,7 @@ export default function App() {
   
 
     //DETECCION TABLERO 
-    if(startSession.some(session => input.includes(session))){
+    if(dictionaryWord.startSession.some(session => input.includes(session))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Log%20in`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
@@ -158,7 +173,7 @@ export default function App() {
     
 
     // DETECCION PARA HACER LOG OUT
-    if(outSession.some(session => input.includes(session))){
+    if(dictionaryWord.outSession.some(session => input.includes(session))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=log%20out`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
@@ -166,226 +181,212 @@ export default function App() {
 
     // Deteccion IOT
     
-    if(iot.some(iot => input.includes(iot))){
+    if(dictionaryWord.iot.some(iot => input.includes(iot))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20conectarme%20al%20golfito%20`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION DE COMO USAR LAS TRAMPAS
-    if(howUseTraps.some(traps => input.includes(traps))){
+    if(dictionaryWord.howUseTraps.some(traps => input.includes(traps))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Activar%20trampas`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION DE DIFERENTES TRAMPAS
-    if(typeTraps.some(trapsT => input.includes(trapsT))){
+    if(dictionaryWord.typeTraps.some(trapsT => input.includes(trapsT))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Tipos%20trampas`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION ERRORES IOT
-    if(trubbleIot.some(truble => input.includes(truble))){
+    if(dictionaryWord.trubbleIot.some(truble => input.includes(truble))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Descompuesto`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCON DE COSAS DE FRIENDS
-    if(invite.some(inv => input.includes(inv))){
+    if(dictionaryWord.invite.some(inv => input.includes(inv))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20invitar%20a%20mis%20amigos`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION DE NUEVAS NOTICIAS 
-    if(news.some(advic => input.includes(advic))){
+    if(dictionaryWord.news.some(advic => input.includes(advic))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Novedades`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION DE SISTEMA DE PUNTOS
-    if(pointsSystem.some(point => input.includes(point))){
+    if(dictionaryWord.pointsSystem.some(point => input.includes(point))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Que%20son%20los%20puntos`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION DE TIPO KARMA POINTS
-    if(karma.some(kar => input.includes(kar))){
+    if(dictionaryWord.karma.some(kar => input.includes(kar))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Karma`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCIOND DE PUNTOS
-    if(puntos.some(po => input.includes(po))){
+    if(dictionaryWord.puntos.some(po => input.includes(po))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Puntos`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION BARRA DE NAVEGACION
-    if(barNav.some(nav => input.includes(nav))){
+    if(dictionaryWord.barNav.some(nav => input.includes(nav))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Tutorial%20barra%20de%20navegacion`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION SECCIONES BARRA
-    if(barSections.some(section => input.includes(section))){
+    if(dictionaryWord.barSections.some(section => input.includes(section))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=SECCIONES%20BARRA`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION COMO FUNCIONAN LOS TURNOS
-    if(turnos.some(tur => input.includes(tur))){
+    if(dictionaryWord.turnos.some(tur => input.includes(tur))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Turnos%20`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION TRAMPA REMOLINO
-    if(spiral.some(trap => input.includes(trap))){
+    if(dictionaryWord.spiral.some(trap => input.includes(trap))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Turnos%20`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION TRAMPA CACHETADA
-    if(cachet.some(trap => input.includes(trap))){
+    if(dictionaryWord.cachet.some(trap => input.includes(trap))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Cachetadon%20`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION TRAMPA PISTOLA DE AIRE
-    if(airGun.some(trap => input.includes(trap))){
+    if(dictionaryWord.airGun.some(trap => input.includes(trap))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Pistola%20de%20aire`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
     
     // DETECCION TRAMPA TERREMOTO
-    if(eathQuater.some(trap => input.includes(trap))){
+    if(dictionaryWord.eathQuater.some(trap => input.includes(trap))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Terremoto`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
     // DETECCION FAIL CONECTION
-    if(faildConection.some(con => input.includes(con))){
+    if(dictionaryWord.faildConection.some(con => input.includes(con))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=No%20conecta`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const thks = thanks.some(greeting => input.includes(greeting));
-    if (thks) {
-      const greetingResponses = [ 'De nada!!! Aqui estoy para ti!', 'Que felicidad, me alegra ser de utilidad', 'De nada enfermo mental', 'A divertirse jugador!!! aqui estoy', 'Gracias a ti'];
+    if (dictionaryWord.thanks.some(greeting => input.includes(greeting))) {
+      const greetingResponses = [ 'De nada!!! Aqui estoy para ti!', 'Que felicidad, me alegra ser de utilidad', 'De nada, aqui estoy', 'A divertirse jugador!!! aqui estoy', 'Gracias a ti'];
       return Promise.resolve( greetingResponses[Math.floor(Math.random() * greetingResponses.length)] );
     }
 
     ////////// OTRO AVANCE //////////////////////////
 
-    const hapw = howAppWorks.some(hap => input.includes(hap));
-    if(hapw){
+    if(dictionaryWord.howAppWorks.some(hap => input.includes(hap))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20funciona%20la%20app%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
     
-    const wif = whatIsGolf.some(wg => input.includes(wg));
-    if (wif){
+    if (dictionaryWord.whatIsGolf.some(wg => input.includes(wg))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Que%20es%20el%20golf%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     } 
 
-    const hpg = howPlayGolf.some(hpg => input.includes(hpg));
-    if (hpg){
+    if (dictionaryWord.howPlayGolf.some(hpg => input.includes(hpg))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20se%20juega%20el%20golf%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const rule = rules.some(rle => input.includes(rle));
-    if (rule){
+    if (dictionaryWord.rules.some(rle => input.includes(rle))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Reglas`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const mhscore = mostHighestScore.some(mscore => input.includes(mscore));
-    if (mhscore){
+    if (dictionaryWord.mostHighestScore.some(mscore => input.includes(mscore))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Puntaje%20mas%20alto`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
     
-    const wig = whatIsGolfin.some(golfin => input.includes(golfin));
-    if (wig){
+    if (dictionaryWord.whatIsGolfin.some(golfin => input.includes(golfin))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Que%20es%20golfin%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const ranking = betterGolfPlayers.some(player => input.includes(player));
-    if(ranking){
+    if(dictionaryWord.betterGolfPlayers.some(player => input.includes(player))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Mejores%20jugadores%20de%20golf%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
     
-    const different = whatsDifferent.some(df => input.includes(df));
-    if (different){
+    if (dictionaryWord.whatsDifferent.some(df => input.includes(df))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Diferente`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const wfc = wifiConection.some(w => input.includes(w));
-    if (wfc){
+    if (dictionaryWord.wifiConection.some(w => input.includes(w))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Conexion%20a%20internet`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
 
-    const noWifi = theresNotWifi.some(nw => input.includes(nw));
-    if(noWifi){
+    if(dictionaryWord.theresNotWifi.some(nw => input.includes(nw))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=no%20hay%20wifi`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const lonley = soloOrFriends.some(lnly => input.includes(lnly));
-    if(lonley){
+    if(dictionaryWord.soloOrFriends.some(lnly => input.includes(lnly))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=solo%20o%20con%20amigos`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const platform = compatibility.some(cmp => input.includes(cmp));
-    if(platform){
+    if(dictionaryWord.compatibility.some(cmp => input.includes(cmp))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=compatibilidad`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const quien = whoAreYou.some(subject => input.includes(subject));
-    if(quien){
+
+    if(dictionaryWord.whoAreYou.some(subject => input.includes(subject))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=quien%20eres%3F`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-    const excers = exercise.some(move => input.includes(move));
-    if(excers){
+    if(dictionaryWord.exercise.some(move => input.includes(move))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Ejercicio`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
@@ -401,6 +402,26 @@ export default function App() {
     }
   }, [messages]);
 
+   useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        scrollViewRef.current?.scrollToEnd({ animated: true });
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        scrollViewRef.current?.scrollToEnd({ animated: true });
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+  
      return (
     <LinearGradient  colors={['#f0f9f0', '#e0f3e0']} style={styles.container}>
       <StatusBar style="dark" />
