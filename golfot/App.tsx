@@ -512,7 +512,7 @@ export default function App() {
     };
   }, []);
   
-     return (
+return (
     <LinearGradient  colors={['#f0f9f0', '#e0f3e0']} style={styles.container}>
       <StatusBar style="dark" />
       
@@ -525,9 +525,10 @@ export default function App() {
 
       <KeyboardAvoidingView 
         style={styles.chatArea}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+        behavior={Platform.OS === 'android' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'android' ? 1 : 0}
       >
+        
         <ScrollView 
           ref={scrollViewRef}
           style={styles.chatContainer}
@@ -586,7 +587,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingTop: Platform.OS === 'ios' ? 50 : 30,
+    paddingTop: 50,
     paddingBottom: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -729,4 +730,4 @@ const styles = StyleSheet.create({
   sendIcon: {
     marginLeft: 2,
   },
-});
+}); 
