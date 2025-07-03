@@ -29,7 +29,7 @@ type Message = {
   timestamp?: Date;
 };
 
-const ip : String= "192.168.0.15";
+const ip : String= "10.100.1.175";
 
 const dictionaryWord = {
   saludos: ['hola', 'hi', 'hello', 'buenos días', 'buenas tardes', 'buenas noches', 'qué tal', 'cómo estás', 'saludos', 'hey', 'qué hubo', 'habla'],
@@ -37,8 +37,8 @@ const dictionaryWord = {
   startSession: ['inicio sesión', 'inicio de sesión', 'log in', 'registrarse', 'me registro', 'registrarme', 'iniciar sesión', 'logueo', 'login', 'inicio una sesión', 'loguear'],
   outSession: ['cerrar sesión', 'cerrar la sesión', 'cierro sesión', 'log out', 'salir de la sesión', 'finalizar sesión', 'cierro mi sesión', 'cerrar mi sesión'],
   iot: ['golfito', 'hoyo', 'mapa', 'cómo usar el tablero', 'cómo conectarme', 'conectarse al tablero', 'cómo me conecto','cómo uso el juego','cómo usar el juego','como uso el juego','como usar el juego'],
-  howUseTraps: ['cómo usar las trampas', 'dónde usar las trampas', 'usar trampas', 'cómo uso las trampas','como uso las trampas'], 
-  typeTraps: ['tipos de trampas', 'remolino', 'pistola de aire', 'terremoto', 'cachetadón', 'cuántas trampas hay', 'cuántas trampas existen', 'trampas existentes'],
+  howUseTraps: ['se usan las trampas','usan las trampas','como usar las trampas','donde puedo jugar','cómo usar las trampas', 'dónde usar las trampas', 'usar trampas', 'cómo uso las trampas','como uso las trampas', 'como se usan las tramapas'], 
+  typeTraps: ['funcionamiento de las trampas','funcionamiento de trampas','funcionan las trampas','trampas hay','trampas existen','trampas existentes','que trampas hay','tipos de trampas', 'remolino', 'pistola de aire', 'terremoto', 'cachetadón', 'cuántas trampas hay', 'cuántas trampas existen', 'trampas existentes'],
   trubbleIot: ['no se conecta', 'no conecta', 'falla conexión', 'falló conexión', 'problema con conexión', 'problema de conexión'],
   invite: ['invitar a mis amigos', 'solicitud amistad', 'jugar con amigos', 'jugar amigos', 'invitar', 'solicitud', 'invito a amigos'],
   news: ['noticias', 'información reciente', 'actualizaciones', 'noticias recientes', 'noticias actuales', 'lo más nuevo', 'información nueva', 'información más nueva', 'qué hay de nuevo', 'novedades'],
@@ -54,7 +54,7 @@ const dictionaryWord = {
   eathQuater: ['terremoto', 'vibración', 'vibratorio', 'vibraciones', 'rebota', 'hace rebotar'],
   faildConection: ['no aparece el dispositivo', 'falla la conexión', 'no me aparece'],
   thanks: ['gracias', 'eres genial', 'te amo'],
-  howAppWorks: ['cómo funciona la app', 'cómo funciona la aplicación', 'cómo usar la aplicación', 'cómo usar la app', 'usar la app', 'uso de la aplicación', 'usar la aplicación', 'uso de la app', 'funciona la app', 'funciona la aplicación', 'cómo es que funciona la app', 'cómo es que funciona la aplicación', 'no se usar la aplicacion', 'no se usar la app', 'no se usar la aplicación', 'no sé usar la app', 'no sé usar la aplicación', 'no sé usar la aplicacion','no se como usar la app','no se como usar la aplicacion','no sé como usar la app','no sé como usar la aplicacion'],
+  howAppWorks: ['que hago','cómo funciona la app', 'cómo funciona la aplicación', 'cómo usar la aplicación', 'cómo usar la app', 'usar la app', 'uso de la aplicación', 'usar la aplicación', 'uso de la app', 'funciona la app', 'funciona la aplicación', 'cómo es que funciona la app', 'cómo es que funciona la aplicación', 'no se usar la aplicacion', 'no se usar la app', 'no se usar la aplicación', 'no sé usar la app', 'no sé usar la aplicación', 'no sé usar la aplicacion','no se como usar la app','no se como usar la aplicacion','no sé como usar la app','no sé como usar la aplicacion'],
   whatIsGolf: ['qué es el golf', 'qué es golf'],
   howPlayGolf: ['cómo jugar golf', 'cómo se juega el golf','como se juega', 'como se juega el golf','como jugar golf','como jugar', 'cómo jugar'],
   rules: ['cuáles son las reglas', 'reglas del juego','cuales son las reglas', 'reglas de golfin', 'reglas del tablero'],
@@ -72,13 +72,16 @@ const dictionaryWord = {
   howWin: ['cómo ganar', 'cómo se gana', 'cómo se gana el juego', 'cómo se gana la partida', 'cómo ganar la partida', 'cómo ganar el juego', 'ganar el juego', 'ganar la partida', 'como ganar','como se gana'],
   howManyPoints : ['cuántos hoyos', 'cuántos hoyos hay', 'cuántos hoyos se necesitan', 'cuántos hoyos hay que tener', 'cuántos hoyos hay que conseguir','cantidad de puntos', 'cuántos puntos', 'cuántos puntos necesito', 'cuántos puntos hay que hacer', 'cuántos puntos se necesitan', 'cuántos puntos se requieren', 'cuántos puntos hay que conseguir'],
   howManyRounds: ['cuántas rondas', 'cuántas rondas hay', 'cuántas rondas se juegan', 'cuántas rondas se necesitan', 'cuántas rondas hay que jugar', 'cuántas rondas hay que completar', 'cuantos rounds hay que hacer', 'cuántos rounds hay que jugar','cuántos rounds hay que completar', 'cuántos rounds hay que conseguir'],
-  howManyPlayers: ['cuantos jugadores','cuántos jugadores', 'cuántos jugadores hay', 'cuántos jugadores se necesitan', 'cuántos jugadores hay que tener', 'cuántos jugadores hay que conseguir','cuantos jugadores pueden jugar', 'cuántos jugadores pueden participar', 'cuántos jugadores se pueden unir', 'cuántos jugadores se pueden agregar', 'cuántos jugadores se pueden incluir'],
+  howManyPlayers: ['cuantas personas podrian jugar','cuantas personas pueden jugar','cuantos jugadores','cuántos jugadores', 'cuántos jugadores hay', 'cuántos jugadores se necesitan', 'cuántos jugadores hay que tener', 'cuántos jugadores hay que conseguir','cuantos jugadores pueden jugar', 'cuántos jugadores pueden participar', 'cuántos jugadores se pueden unir', 'cuántos jugadores se pueden agregar', 'cuántos jugadores se pueden incluir'],
   dude: ['puedo jugar online', 'jugar online', 'jugar en línea', 'jugar en internet', 'jugar en la web', 'jugar en la red', 'jugar en la nube', 'jugar en el servidor', 'jugar en el cloud'],
   duration: ['cuanto dura cada partida','cuanto duran las partidas','duración', 'cuánto dura', 'cuánto tiempo dura', 'cuánto tiempo se necesita', 'cuánto tiempo hay que dedicar', 'cuánto tiempo hay que invertir', 'cuánto tiempo hay que jugar', 'cuánto tiempo hay que completar', 'cuánto tiempo hay que conseguir'],
   queganas: ['que se gana','que ganas si juegas con alguien mas', ' que ganas si juegas con amigos', 'que ganas si juegas con alguien', 'que ganas si juegas con otra persona', 'que ganas si juegas con otra persona mas', 'que ganas si juegas con otra persona mas', 'que ganas si'],
   replay: ['y como hago eso', 'y como se hace', 'y como se hace eso', 'y como se hace eso','y como hago eso','y como se hace','y como se hace', 'como lo hago', 'como se hace'],
   howGameEnds: ['cómo se termina el juego','como se termina el juego','cómo termina el juego', 'cómo se termina el juego', 'cómo finaliza el juego', 'cómo se finaliza el juego', 'cómo acaba el juego', 'cómo se acaba el juego', 'cómo se concluye el juego', 'cómo se concluye la partida', 'cómo se concluye la sesión', 'como termino el juego', 'como puedo terminar el juego', 'como cierro el juego', 'como finalizo el juego', 'como acabo el juego', 'como concluyo el juego'],
   recomendations: ['recomiendes','recomendaciones', 'consejos', 'sugerencias', 'tips', 'recomendaciones para jugar', 'consejos para jugar', 'sugerencias para jugar', 'tips para jugar', 'recomendaciones de juego', 'consejos de juego', 'sugerencias de juego', 'tips de juego'],
+  wherePlay: ['que hago', 'donde se juega', 'donde jugar', 'donde puedo jugar', 'donde puedo jugar golfito', 'donde puedo jugar golfin', 'donde puedo jugar golfito o golfin', 'donde puedo jugar golfito o golfin', 'donde puedo jugar golfito o golfin'],
+  mercado: ['para quien va dirigida la aplicacion','para quien va dirigida la aplicación','dirigida la aplicacion', 'dirigida la aplicación','dirigido el juego','para quien va dirigido el juego', 'quien es su mercado', 'quien es su target', 'quien es su audiencia', 'quien es su publico objetivo', 'quien es su mercado objetivo', 'quien es su mercado meta', 'quien es su mercado objetivo', 'quien es su mercado meta', 'quien es su mercado meta', ' para quien es su aplicacion', 'para quienes es su aplicacion'],
+  objective: ["cuál es su objetivo",'cual es su objetivo', 'cual es su meta', 'cual es su finalidad', 'cual es su propósito', 'cual es su objetivo principal', 'cual es su objetivo secundario', 'cual es su objetivo final', 'cual es su objetivo general', 'cual es su objetivo especifico', 'cual es su objetivo especifico','objetivo de la app','objetivo de la aplicacion'],
 };
 
 
@@ -463,6 +466,24 @@ export default function App() {
 
     if(dictionaryWord.recomendations.some(recom => input.includes(recom))){
       const apiData = await getData(`http://${ip}:3000/howplay/search?question=Recomendaciones`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.wherePlay.some(where => input.includes(where))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Donde%20jugar`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.mercado.some(market => input.includes(market))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=mercado`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.objective.some(obj => input.includes(obj))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=objetivo`);
       const parsedData = JSON.parse(apiData) as { answer: string }[]; 
       return parsedData.map(item => item.answer).join("\n\n");
     }
