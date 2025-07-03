@@ -2,7 +2,7 @@ import express, {Request, Response} from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { look_into_HowPlay, add_HowPlay} from "./db";
+import { look_into_HowPlay, add_HowPlay, add_word} from "./db";
 
 
 dotenv.config();
@@ -41,6 +41,20 @@ app.post("/howplay", async (req: any, res : any) => {
     }
     catch(error){res.status(500).json({error: "Error al insertar"}); }
 
+});
+
+app.post("/wods/add", async (req: any, res: any) => {
+  const { word } = req.body;
+  if (!word) {
+    return res.status(400).json({ error: "LLENA LOS CAMPOS" });
+  }
+  try {
+    const input = await add_word(word);
+    res.status(201).json({ mensaje: "Pregunta agregada", data: input });
+  } catch (error) {
+    console.error("Error al insertar palabra:", error);  // <-- para saber qué pasó
+    res.status(500).json({ error: "Error al insertar" });
+  }
 });
 
 

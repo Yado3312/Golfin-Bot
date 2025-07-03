@@ -11,7 +11,7 @@ export const conectarDB = async () => {
   }
 };
 
-export async function add_word(params:string){return await word.create({question:params })}
+export async function add_word(params:string){return await word.create({word:params })}
 
 export async function look_word(params: string){return await word.findOne({ word:params })}
 

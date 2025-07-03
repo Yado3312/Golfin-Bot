@@ -44,7 +44,7 @@ const dictionaryWord = {
   news: ['noticias', 'información reciente', 'actualizaciones', 'noticias recientes', 'noticias actuales', 'lo más nuevo', 'información nueva', 'información más nueva', 'qué hay de nuevo', 'novedades'],
   pointsSystem: ['sistema de puntos', 'cómo gano puntos', 'puntajes', 'cómo es el puntaje', 'cómo se ganan puntos', 'ganar puntos'],
   barNav: ['barra de navegación', 'barra lateral', 'barra de navegación lateral', 'menú'],
-  barSections: ['secciones de la barra', 'barra secciones', 'secciones barra', 'barra con sus secciones', 'qué secciones tiene'],
+  barSections: ['secciones de la barra', 'barra secciones', 'secciones barra', 'barra con sus secciones', 'qué secciones tiene','secciones tiene', 'que secciones tiene la barra de navegación', 'que secciones tiene la barra lateral', 'que secciones tiene la barra de navegación lateral'],
   karma: ['karma'],
   puntos: ['puntos', 'cómo funciona el puntaje', 'puntaje', 'punto'],
   turnos: ['turnos', 'cómo funcionan los turnos', 'cuántos turnos', 'cómo son los turnos'],
@@ -52,9 +52,9 @@ const dictionaryWord = {
   cachet: ['mano que golpea', 'cachetada', 'cacheteador', 'cachetea', 'golpea'],
   airGun: ['pistola de aire', 'dispara aire', 'aire', 'disparar'],
   eathQuater: ['terremoto', 'vibración', 'vibratorio', 'vibraciones', 'rebota', 'hace rebotar'],
-  faildConection: ['no aparece el dispositivo', 'falla la conexión'],
+  faildConection: ['no aparece el dispositivo', 'falla la conexión', 'no me aparece'],
   thanks: ['gracias', 'eres genial', 'te amo'],
-  howAppWorks: ['cómo funciona la app', 'cómo funciona la aplicación', 'cómo usar la aplicación', 'cómo usar la app', 'usar la app', 'uso de la aplicación', 'usar la aplicación', 'uso de la app', 'funciona la app', 'funciona la aplicación', 'cómo es que funciona la app', 'cómo es que funciona la aplicación'],
+  howAppWorks: ['cómo funciona la app', 'cómo funciona la aplicación', 'cómo usar la aplicación', 'cómo usar la app', 'usar la app', 'uso de la aplicación', 'usar la aplicación', 'uso de la app', 'funciona la app', 'funciona la aplicación', 'cómo es que funciona la app', 'cómo es que funciona la aplicación', 'no se usar la aplicacion', 'no se usar la app', 'no se usar la aplicación', 'no sé usar la app', 'no sé usar la aplicación', 'no sé usar la aplicacion','no se como usar la app','no se como usar la aplicacion','no sé como usar la app','no sé como usar la aplicacion'],
   whatIsGolf: ['qué es el golf', 'qué es golf'],
   howPlayGolf: ['cómo jugar golf', 'cómo se juega el golf','como se juega', 'como se juega el golf','como jugar golf','como jugar', 'cómo jugar'],
   rules: ['cuáles son las reglas', 'reglas del juego','cuales son las reglas', 'reglas de golfin', 'reglas del tablero'],
@@ -62,23 +62,23 @@ const dictionaryWord = {
   whatIsGolfin: ['qué es golfin', 'golfin qué es', 'golfin'],
   betterGolfPlayers: ['quiénes son los mejores jugadores', 'mejores jugadores', 'pro players'],
   whatsDifferent: ['qué tienen de diferente', 'qué los diferencia', 'qué lo diferencia', 'qué diferencia hay', 'golfin y golfito', 'minigolf y golf', 'qué los hace diferentes'],
-  wifiConection: ['misma conexión a internet', 'conexión a internet', 'conexión a wifi', 'misma conexión a wifi', 'misma conexión de wifi'],
+  wifiConection: ['misma conexión a internet','misma conexion a internet', 'conexión a internet', 'conexión a wifi', 'misma conexión a wifi', 'misma conexión de wifi'],
   theresNotWifi: ['no hay wifi', 'no tienen wifi', 'no tiene wifi', 'no hay internet', 'no hay conexión a internet'],
   soloOrFriends: ['puedo jugar solo', 'jugar solo', 'jugar solito', 'jugar en solitario', 'juego solitario'],
   compatibility: ['es compatible con ios', 'es compatible con android', 'multiplataforma', 'varias plataformas', 'múltiples plataformas'],
   whoAreYou: ['quién eres', 'qué haces', 'qué eres', 'hola quién eres'],
   exercise: ['ejercicio', 'qué partes del cuerpo ejercita', 'ejercita'],
   adios: ['adiós', 'hasta luego', 'hasta pronto', 'hasta luego amigo', 'bye', 'nos vemos', 'chao', 'hasta la próxima', 'cuídate', 'feliz día', 'buen día', 'bai', 'aios'],
-  
   howWin: ['cómo ganar', 'cómo se gana', 'cómo se gana el juego', 'cómo se gana la partida', 'cómo ganar la partida', 'cómo ganar el juego', 'ganar el juego', 'ganar la partida', 'como ganar','como se gana'],
   howManyPoints : ['cuántos hoyos', 'cuántos hoyos hay', 'cuántos hoyos se necesitan', 'cuántos hoyos hay que tener', 'cuántos hoyos hay que conseguir','cantidad de puntos', 'cuántos puntos', 'cuántos puntos necesito', 'cuántos puntos hay que hacer', 'cuántos puntos se necesitan', 'cuántos puntos se requieren', 'cuántos puntos hay que conseguir'],
   howManyRounds: ['cuántas rondas', 'cuántas rondas hay', 'cuántas rondas se juegan', 'cuántas rondas se necesitan', 'cuántas rondas hay que jugar', 'cuántas rondas hay que completar', 'cuantos rounds hay que hacer', 'cuántos rounds hay que jugar','cuántos rounds hay que completar', 'cuántos rounds hay que conseguir'],
-  howManyPlayers: ['cuántos jugadores', 'cuántos jugadores hay', 'cuántos jugadores se necesitan', 'cuántos jugadores hay que tener', 'cuántos jugadores hay que conseguir','cuantos jugadores pueden jugar', 'cuántos jugadores pueden participar', 'cuántos jugadores se pueden unir', 'cuántos jugadores se pueden agregar', 'cuántos jugadores se pueden incluir'],
+  howManyPlayers: ['cuantos jugadores','cuántos jugadores', 'cuántos jugadores hay', 'cuántos jugadores se necesitan', 'cuántos jugadores hay que tener', 'cuántos jugadores hay que conseguir','cuantos jugadores pueden jugar', 'cuántos jugadores pueden participar', 'cuántos jugadores se pueden unir', 'cuántos jugadores se pueden agregar', 'cuántos jugadores se pueden incluir'],
   dude: ['puedo jugar online', 'jugar online', 'jugar en línea', 'jugar en internet', 'jugar en la web', 'jugar en la red', 'jugar en la nube', 'jugar en el servidor', 'jugar en el cloud'],
-  duration: ['duración', 'cuánto dura', 'cuánto tiempo dura', 'cuánto tiempo se necesita', 'cuánto tiempo hay que dedicar', 'cuánto tiempo hay que invertir', 'cuánto tiempo hay que jugar', 'cuánto tiempo hay que completar', 'cuánto tiempo hay que conseguir'],
-  queganas: ['que ganas si juegas con alguien mas', ' que ganas si juegas con amigos', 'que ganas si juegas con alguien', 'que ganas si juegas con otra persona', 'que ganas si juegas con otra persona mas', 'que ganas si juegas con otra persona mas'],
+  duration: ['cuanto dura cada partida','cuanto duran las partidas','duración', 'cuánto dura', 'cuánto tiempo dura', 'cuánto tiempo se necesita', 'cuánto tiempo hay que dedicar', 'cuánto tiempo hay que invertir', 'cuánto tiempo hay que jugar', 'cuánto tiempo hay que completar', 'cuánto tiempo hay que conseguir'],
+  queganas: ['que se gana','que ganas si juegas con alguien mas', ' que ganas si juegas con amigos', 'que ganas si juegas con alguien', 'que ganas si juegas con otra persona', 'que ganas si juegas con otra persona mas', 'que ganas si juegas con otra persona mas', 'que ganas si'],
   replay: ['y como hago eso', 'y como se hace', 'y como se hace eso', 'y como se hace eso','y como hago eso','y como se hace','y como se hace', 'como lo hago', 'como se hace'],
-
+  howGameEnds: ['cómo se termina el juego','como se termina el juego','cómo termina el juego', 'cómo se termina el juego', 'cómo finaliza el juego', 'cómo se finaliza el juego', 'cómo acaba el juego', 'cómo se acaba el juego', 'cómo se concluye el juego', 'cómo se concluye la partida', 'cómo se concluye la sesión', 'como termino el juego', 'como puedo terminar el juego', 'como cierro el juego', 'como finalizo el juego', 'como acabo el juego', 'como concluyo el juego'],
+  recomendations: ['recomiendes','recomendaciones', 'consejos', 'sugerencias', 'tips', 'recomendaciones para jugar', 'consejos para jugar', 'sugerencias para jugar', 'tips para jugar', 'recomendaciones de juego', 'consejos de juego', 'sugerencias de juego', 'tips de juego'],
 };
 
 
@@ -102,6 +102,22 @@ export default function App() {
       return JSON.stringify(data);
       } 
       catch (error) {console.error(error); return "Hubo un error";}
+  }
+
+  const insertWord = async (word: string) => {
+    try{
+      const response = await fetch(`http://${ip}:3000/wods/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({word: word})
+          });
+          const data = await response.json();
+          console.log(data);
+          return data;
+        } 
+        catch (error) {  console.error(error); return "Hubo un error";}
   }
   
 
@@ -139,7 +155,6 @@ export default function App() {
   const generateResponse = async (userInput: string): Promise<string> => {
     const input = userInput.toLowerCase();
     
-
 
     // DETECCION SALUDOS
 
@@ -392,15 +407,69 @@ export default function App() {
       return parsedData.map(item => item.answer).join("\n\n");
     }
 
-
-    return Promise.resolve("No entiendo bien, Podrias explicarme por favor? ");;
-  };
-
-  useEffect(() => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollToEnd({ animated: true });
+    if(dictionaryWord.howWin.some(win => input.includes(win))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=como%20ganar`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
     }
-  }, [messages]);
+
+    if(dictionaryWord.howManyPoints.some(points => input.includes(points))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=HmPoints`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.howManyRounds.some(rounds => input.includes(rounds))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=HmRondas`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.howManyPlayers.some(players => input.includes(players))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Hmplayers`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.dude.some(du => input.includes(du))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=dudaOnline`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.duration.some(dur => input.includes(dur))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Duracion`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.queganas.some(ganas => input.includes(ganas))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Que%20se%20gana`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.replay.some(replay => input.includes(replay))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Como%20hago%20eso`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.howGameEnds.some(ends => input.includes(ends))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=EndsGame`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    if(dictionaryWord.recomendations.some(recom => input.includes(recom))){
+      const apiData = await getData(`http://${ip}:3000/howplay/search?question=Recomendaciones`);
+      const parsedData = JSON.parse(apiData) as { answer: string }[]; 
+      return parsedData.map(item => item.answer).join("\n\n");
+    }
+
+    insertWord(inputText.trim());
+    return Promise.resolve("No entiendo bien, Podrias explicarme por favor? ");
+  };
 
    useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -605,7 +674,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 5,
-    marginBottom: 10,
   },
   input: {
     flex: 1,
