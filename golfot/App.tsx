@@ -82,7 +82,7 @@ const dictionaryWord = {
   wherePlay: ['que hago', 'donde se juega', 'donde jugar', 'donde puedo jugar', 'donde puedo jugar golfito', 'donde puedo jugar golfin', 'donde puedo jugar golfito o golfin', 'donde puedo jugar golfito o golfin', 'donde puedo jugar golfito o golfin'],
   mercado: ['para quien va dirigida la aplicacion','para quien va dirigida la aplicación','dirigida la aplicacion', 'dirigida la aplicación','dirigido el juego','para quien va dirigido el juego', 'quien es su mercado', 'quien es su target', 'quien es su audiencia', 'quien es su publico objetivo', 'quien es su mercado objetivo', 'quien es su mercado meta', 'quien es su mercado objetivo', 'quien es su mercado meta', 'quien es su mercado meta', ' para quien es su aplicacion', 'para quienes es su aplicacion'],
   objective: ["cuál es su objetivo",'cual es su objetivo', 'cual es su meta', 'cual es su finalidad', 'cual es su propósito', 'cual es su objetivo principal', 'cual es su objetivo secundario', 'cual es su objetivo final', 'cual es su objetivo general', 'cual es su objetivo especifico', 'cual es su objetivo especifico','objetivo de la app','objetivo de la aplicacion'],
-};
+}; // palabras comunes
 
 
 export default function App() {
@@ -90,14 +90,14 @@ export default function App() {
     { 
       from: 'bot', 
       text: 'Hola! Soy GolfBot, tu asistente personal de golf. ¿En qué puedo ayudarte hoy?',
-      timestamp: new Date() 
+      timestamp: new Date() // bienvenida
     }
   ]);
-  const [inputText, setInputText] = useState('');
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [inputText, setInputText] = useState(''); // text
+  const scrollViewRef = useRef<ScrollView>(null); // el scroll intimo
+  const [isLoading, setIsLoading] = useState(false); //loandiing
 
-  // Funcion para pder obtener la data del endpoint
+  // AQUI ESTA EL PERRO GET
   const getData = async (uri:string): Promise<string> => {
     try{
       const response = await fetch(uri); 
