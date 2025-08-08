@@ -52,7 +52,7 @@ app.post("/wods/add", async (req: any, res: any) => {
     const input = await add_word(word);
     res.status(201).json({ mensaje: "Pregunta agregada", data: input });
   } catch (error) {
-    console.error("Error al insertar palabra:", error);  // <-- para saber qué pasó
+    console.error("Error al insertar palabra:", error);   
     res.status(500).json({ error: "Error al insertar" });
   }
 });
