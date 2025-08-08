@@ -93,9 +93,9 @@ export default function App() {
       timestamp: new Date() // bienvenida
     }
   ]);
-  const [inputText, setInputText] = useState(''); // text
-  const scrollViewRef = useRef<ScrollView>(null); // el scroll intimo
-  const [isLoading, setIsLoading] = useState(false); //loandiing
+  const [inputText, setInputText] = useState(''); 
+  const scrollViewRef = useRef<ScrollView>(null); 
+  const [isLoading, setIsLoading] = useState(false); 
 
   // AQUI ESTA EL PERRO GET
   const getData = async (uri:string): Promise<string> => {
@@ -141,7 +141,7 @@ export default function App() {
     const botResponseText = await generateResponse(inputText); // Espera la respuesta
     const botResponse: Message = {
       from: 'bot',
-      text: botResponseText, // Aquí ya tienes el string, no la Promise
+      text: botResponseText, 
       timestamp: new Date()
     };
     setMessages(prev => [...prev, botResponse]);
